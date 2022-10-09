@@ -5,13 +5,14 @@ import MovieCard from "./MovieCard";
 
 export default function FilmsList() {
   const [moviesList, setMoviesList] = useState([]);
-  console.log(moviesList);
 
   useEffect(() => {
     const promise = axios.get(
       "https://mock-api.driven.com.br/api/v5/cineflex/movies"
     );
-    promise.then((ans) => setMoviesList(ans.data));
+    promise.then((ans) => {
+      setMoviesList(ans.data)
+    });
   }, []);
 
   return (

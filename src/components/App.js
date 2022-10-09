@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import FilmsList from "./FilmsList";
 import GlobalStyle from "../GlobalStyle";
 import FilmPage from "./FilmPage";
+import SeatsSession from "./SeatsSession";
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<FilmsList />} />
         <Route path="/sessoes/:idFilme" element={<FilmPage />} />
+        <Route path="/assentos/:idSessao" element={<SeatsSession />} />
       </Routes>
     </Router>
   );
@@ -31,6 +33,8 @@ const Header = styled.header`
 
   position: fixed;
   top: 0;
+
+  z-index: 2;
 
   display: flex;
   justify-content: center;
