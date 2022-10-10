@@ -6,7 +6,7 @@ import SessionsLayout from "./SessionsLayout";
 import MovieDetails from "./MovieDetails";
 
 export default function FilmPage() {
-  const [filmCardData, setFilmCardData] = useState({});
+  const [filmCardData, setFilmCardData] = useState(null);
   const [ShowingContent, setShowingContent] = useState("sessions");
 
   const { idFilme } = useParams();
@@ -42,7 +42,11 @@ export default function FilmPage() {
         <div></div>
         <div></div>
       </HorizontalLine>
-      {ShowingContent === 'sessions' ? <SessionsLayout sessionsData={filmCardData.days} /> : <MovieDetails filmCardData={filmCardData}/>}
+      {ShowingContent === "sessions" ? (
+        <SessionsLayout filmCardData={filmCardData} />
+      ) : (
+        <MovieDetails filmCardData={filmCardData} />
+      )}
     </FilmPageDiv>
   );
 }

@@ -1,9 +1,8 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-export default function SessionsLayout({ sessionsData }) {
-  console.log(sessionsData);
-
+export default function SessionsLayout({ filmCardData }) {
+  console.log(filmCardData);
   function SessionDay({ dayObject }) {
     const dayLayout = (
       <>
@@ -23,22 +22,25 @@ export default function SessionsLayout({ sessionsData }) {
     return dayLayout;
   }
 
-  function selectSession(dayObject, showtime) {
-    console.log(
-      "dia:",
-      dayObject.date,
-      dayObject.weekday,
-      "horario:",
-      showtime
-    );
-  }
-
   function AvaibleSessionsLayout() {
-    if (sessionsData) {
-      const avaibleSessionsLayout = sessionsData.map((dayObject, index) => (
-        <SessionDay key={index} dayObject={dayObject} />
-      ));
-      return avaibleSessionsLayout;
+    if (filmCardData) {
+      const avaibleSessionsLayout = filmCardData.days.map(
+        (dayObject, index) => <SessionDay key={index} dayObject={dayObject} />
+      );
+      return (
+        <>
+          {avaibleSessionsLayout}
+          <Footer>
+            <ImgContainer>
+              <img src={`${filmCardData.posterURL}`} alt="movie poster" />
+            </ImgContainer>
+            <TextElements>
+              <h2>{filmCardData.title}</h2>
+            </TextElements>
+          </Footer>
+          <FooterPhantom></FooterPhantom>
+        </>
+      );
     } else {
       return <p>Carregando...</p>;
     }
@@ -90,4 +92,57 @@ const SessionsScheddules = styled.div`
 
     font-size: 18px;
   }
+`;
+
+const Footer = styled.div`
+  width: 100%;
+  height: 117px;
+
+  position: fixed;
+
+  bottom: 0;
+  left: 0;
+
+  background-color: #dfe6ed;
+
+  display: flex;
+
+  img {
+    width: 80px;
+  }
+`;
+
+const ImgContainer = styled.div`
+  width: 64px;
+  height: 89px;
+
+  background-color: white;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 14px;
+
+  img {
+    width: 48px;
+    height: 72px;
+  }
+`;
+
+const TextElements = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  h2 {
+    font-size: 26px;
+  }
+`;
+
+const FooterPhantom = styled.div`
+  width: 100%;
+  height: 117px;
 `;

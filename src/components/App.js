@@ -6,6 +6,7 @@ import FilmsList from "./FilmsList";
 import GlobalStyle from "../GlobalStyle";
 import FilmPage from "./FilmPage";
 import SeatsSession from "./SeatsSession";
+import SucessScreen from "./SucessScreen";
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
         <Route path="/" element={<FilmsList />} />
         <Route path="/sessoes/:idFilme" element={<FilmPage />} />
         <Route path="/assentos/:idSessao" element={<SeatsSession />} />
+        <Route path="/sucesso" element={<SucessScreen />} />
       </Routes>
     </Router>
   );
